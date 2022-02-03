@@ -12,6 +12,8 @@ const TeamChannelPreview = ({ channel, type }) => {
 
   //We don't get an arrays of objects [{},{}], but we get objects of objects {'123':{} '122':{}},
   //so we are going to use Object.values to grab all these values
+
+  //Bringing the number of users except me.
   const DirectPreview = () => {
     const members = Object.values(channel.state.members).filter(
       ({ user }) => user.id !== client.userID
@@ -30,7 +32,20 @@ const TeamChannelPreview = ({ channel, type }) => {
       </div>
     );
   };
-  return <div></div>;
+  return (
+    <div
+      className={
+        channel?.id === activeChannel?.id
+          ? "channel-preview__wrapper__selected"
+          : "channel-preview__wrapper"
+      }
+      onClick={() => {
+        console.log(channel);
+      }}
+    >
+      {type === "team" ? <ChannelPreview /> : <DirectPreview />}
+    </div>
+  );
 };
 
 export default TeamChannelPreview;

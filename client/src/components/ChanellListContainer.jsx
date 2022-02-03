@@ -35,6 +35,7 @@ const ChanellListContainer = () => {
       <div className="channel-list__list__wrapper">
         <CompanyHeader />
         <ChannelSearch />
+        {/*Channel List for Group Messages*/}
         <ChannelList
           filters={{}}
           channelRenderFilterFn={() => {}}
@@ -44,6 +45,20 @@ const ChanellListContainer = () => {
               type="team"
               Preview={(previewProps) => (
                 <TeamChannelPreview {...previewProps} type="team" />
+              )}
+            />
+          )}
+        />
+        {/*Channel List for Direct Messages*/}
+        <ChannelList
+          filters={{}}
+          channelRenderFilterFn={() => {}}
+          List={(listProps) => (
+            <TeamChannelList
+              {...listProps}
+              type="messaging"
+              Preview={(previewProps) => (
+                <TeamChannelPreview {...previewProps} type="messaging" />
               )}
             />
           )}
